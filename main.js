@@ -20,9 +20,11 @@ const main = async () => {
         height: 1080,
         show: false
     });
-    const url = "https://www.twitch.tv/floodz";
+    const url = "https://www.twitch.tv/nexusnul";
     const url2 = "https://www.twitch.tv/lana_lux";
+    window.webContents.setAudioMuted(true);
     await window.loadURL(url);
+    window2.webContents.setAudioMuted(true);
     await window2.loadURL(url2);
     let page = await pie.getPage(browser, window);
     let page2 = await pie.getPage(browser, window2);
@@ -35,6 +37,7 @@ async function collectPoints() {
     for (streamPage of pageList) {
         let claimPoints = await streamPage.$('.claimable-bonus__icon');
         if (claimPoints) {
+            console.log('woo');
             setTimeout(() => {
                 claimPoints.click();
             }, 5000)
